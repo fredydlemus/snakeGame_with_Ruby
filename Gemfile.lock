@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    minitest (5.10.3)
     ruby2d (0.11.3)
 
 PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
+  minitest (~> 5.10.0)
   ruby2d (~> 0.11.1)
 
 BUNDLED WITH
