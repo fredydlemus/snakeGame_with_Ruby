@@ -6,17 +6,20 @@ module View
             @pixel_size = 50
         end
 
-        def render(state)
+        def start(state)
             #extend is for adding methods to the class but not to their instances
             extend Ruby2D::DSL
             set(
                 title: "Snake", 
                 width: @pixel_size * state.grid.cols, 
-                height: @pixel_size * state.grid.rows,
-            )
+                height: @pixel_size * state.grid.rows)
+            show
+        end
+
+        def renderGame(state)
             render_snake(state)
             render_food(state)
-            show
+            
         end
 
         private
