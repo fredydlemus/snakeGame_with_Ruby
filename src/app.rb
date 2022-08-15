@@ -11,9 +11,9 @@ class App
 
     def start
         puts "Starting app"
-        view = View::Ruby2DView.new
-        Thread.new { init_timer(view) }
-        view.start(@state)
+        @view = View::Ruby2DView.new(self)
+        Thread.new { init_timer(@view) }
+        @view.start(@state)
         
     end
 
@@ -24,6 +24,16 @@ class App
             view.renderGame(@state)
             sleep 0.5
             # trigger movement
+        end
+    end
+
+    def send_action(action, params)
+        #This is meta programming
+        new_state = Actions.send(action, @state, params)
+        #a hash is calculated in base of the data in the state
+        if new_state.hash != @state.hash
+            @state = new_state
+            @view.render(@state)
         end
     end
     
